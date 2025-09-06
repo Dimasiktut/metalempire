@@ -24,13 +24,13 @@ const RoomLobby: React.FC<RoomLobbyProps> = ({ multiPlayerState }) => {
 
   return (
     <div className="flex flex-col items-center justify-center h-full p-8">
-      <div className="w-full max-w-md bg-slate-900/50 rounded-lg shadow-2xl p-8 border border-slate-700 backdrop-blur-sm">
+      <div className="w-full max-w-md bg-slate-800/60 rounded-lg shadow-2xl p-8 border-2 border-t-slate-600 border-l-slate-600 border-b-slate-900 border-r-slate-900 backdrop-blur-sm">
         <h2 className="font-bebas text-3xl text-center mb-4 text-slate-300 tracking-wide">Лобби комнаты</h2>
         
         <div className="mb-6 text-center">
             <p className="text-slate-400">ID Комнаты:</p>
             <div className="flex items-center justify-center gap-2 mt-1">
-                <p className="font-mono text-2xl tracking-widest text-yellow-400">{roomId}</p>
+                <p className="font-mono text-2xl tracking-widest text-amber-400">{roomId}</p>
                 <button onClick={handleCopy} className="text-slate-400 hover:text-white transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -43,10 +43,10 @@ const RoomLobby: React.FC<RoomLobbyProps> = ({ multiPlayerState }) => {
         <h3 className="font-bebas text-2xl mb-3 text-slate-400">Игроки ({players.length}/4):</h3>
         <div className="space-y-3 mb-6 min-h-[160px]">
           {players.map((player, index) => (
-            <div key={player.id} className="flex items-center space-x-3 bg-slate-800/50 p-2 rounded-md">
+            <div key={player.id} className="flex items-center space-x-3 bg-slate-800/50 p-2 rounded-md border border-slate-700">
               <div className="w-8 h-8 rounded-full shadow-inner" style={{ backgroundColor: PLAYER_COLORS[index] }}></div>
               <p className="flex-grow text-lg text-slate-200">{player.name} {player.id === playerId ? '(Вы)' : ''}</p>
-              {player.isHost && <span className="text-xs font-bold text-yellow-500 bg-yellow-900/50 px-2 py-1 rounded">ХОСТ</span>}
+              {player.isHost && <span className="text-xs font-bold text-amber-400 bg-amber-900/50 px-2 py-1 rounded">ХОСТ</span>}
             </div>
           ))}
         </div>
@@ -57,7 +57,7 @@ const RoomLobby: React.FC<RoomLobbyProps> = ({ multiPlayerState }) => {
           <button
             onClick={startGame}
             disabled={players.length < 2}
-            className="w-full bg-gradient-to-r from-green-600 to-teal-600 text-white font-bebas text-2xl tracking-wider py-3 rounded-lg shadow-lg hover:shadow-green-500/50 transition-all transform hover:scale-105 disabled:from-slate-700 disabled:to-slate-800 disabled:shadow-none disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-amber-500 to-orange-700 text-white font-bebas text-2xl tracking-wider py-3 rounded-lg shadow-lg hover:shadow-orange-500/40 transition-all transform hover:scale-105 disabled:from-slate-700 disabled:to-slate-800 disabled:shadow-none disabled:cursor-not-allowed border-b-4 border-orange-800 hover:border-orange-700 disabled:border-slate-900"
           >
             Начать игру
           </button>
@@ -67,7 +67,7 @@ const RoomLobby: React.FC<RoomLobbyProps> = ({ multiPlayerState }) => {
 
         <button
             onClick={leaveRoom}
-            className="w-full mt-3 bg-red-800/80 text-red-200 font-bebas text-xl tracking-wider py-2 rounded-lg hover:bg-red-700 transition-colors"
+            className="w-full mt-3 bg-gradient-to-r from-red-700 to-red-900 text-red-100 font-bebas text-xl tracking-wider py-2 rounded-lg hover:from-red-600 hover:to-red-800 transition-all border-b-4 border-red-900 hover:border-red-800"
         >
             Покинуть комнату
         </button>
@@ -79,16 +79,6 @@ const RoomLobby: React.FC<RoomLobbyProps> = ({ multiPlayerState }) => {
 const App: React.FC = () => {
     const multiPlayerState = useMultiplayer();
     const { roomId, isGameStarted, gameData, isReconnecting } = multiPlayerState;
-
-    const backgroundStyle: React.CSSProperties = {
-        backgroundImage: 'radial-gradient(circle at top right, hsl(230, 40%, 15%), hsl(260, 30%, 5%))',
-        position: 'fixed',
-        inset: 0,
-        color: '#e2e8f0',
-        width: '100vw',
-        height: '100vh',
-        overflow: 'auto'
-    };
 
     const renderContent = () => {
         if (isReconnecting) {
@@ -115,7 +105,7 @@ const App: React.FC = () => {
     }
 
     return (
-        <div style={backgroundStyle}>
+        <div className="fixed inset-0 w-full h-full overflow-auto">
             {renderContent()}
         </div>
     );
