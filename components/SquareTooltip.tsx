@@ -121,7 +121,7 @@ const SquareTooltip: React.FC<SquareTooltipProps> = ({ square, owner, style }) =
   return (
     <div
       style={style}
-      className="fixed w-60 bg-slate-800 rounded-lg shadow-2xl border border-slate-600 text-white font-roboto-condensed z-50 pointer-events-none transform -translate-y-1/2"
+      className="fixed w-60 bg-slate-900 rounded-lg shadow-2xl border border-slate-600 text-white font-roboto-condensed z-50 pointer-events-none transform -translate-y-1/2"
     >
       <div
         className="h-10 flex items-center justify-center text-center font-bebas text-xl tracking-wider rounded-t-md px-2"

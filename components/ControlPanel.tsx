@@ -35,8 +35,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
   return (
     <div 
-        className="absolute top-[12.5%] left-[12.5%] w-[75%] h-[75%] bg-slate-900/95 p-4 md:p-6 flex flex-col justify-between text-center border-2 border-slate-700/50 rounded-lg shadow-2xl backdrop-blur-sm"
-        style={{boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5)'}}
+        className="absolute top-[12.5%] left-[12.5%] w-[75%] h-[75%] bg-gray-800/90 p-4 md:p-6 flex flex-col justify-between text-center border-4 border-gray-600 rounded-lg shadow-2xl backdrop-blur-sm"
+        style={{boxShadow: 'inset 0 0 40px rgba(0,0,0,0.7)'}}
     >
       <div>
         <h2 className="font-bebas text-3xl md:text-4xl tracking-wider bg-clip-text text-transparent bg-gradient-to-b from-slate-200 to-slate-400"
@@ -56,30 +56,35 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             <button
                 onClick={onRollDice}
                 disabled={gamePhase !== GamePhase.START_TURN || !isMyTurn}
-                className="w-full font-bebas text-xl tracking-wider bg-green-600 hover:bg-green-500 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed text-white py-2 rounded-md transition-all transform hover:enabled:scale-105 border-b-4 border-green-800 hover:border-green-700 disabled:border-slate-800"
+                className="w-full font-bebas text-xl tracking-wider bg-amber-600 hover:bg-amber-500 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed text-white py-2 rounded-md transition-all transform hover:enabled:scale-105 border-b-4 border-amber-800 hover:border-amber-700 disabled:border-slate-800"
             >
                 Бросить кубики
             </button>
             <button
                 onClick={onBuyProperty}
                 disabled={!canBuy}
-                className="w-full font-bebas text-xl tracking-wider bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed text-white py-2 rounded-md transition-all transform hover:enabled:scale-105 border-b-4 border-blue-800 hover:border-blue-700 disabled:border-slate-800"
+                className="w-full font-bebas text-xl tracking-wider bg-sky-600 hover:bg-sky-500 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed text-white py-2 rounded-md transition-all transform hover:enabled:scale-105 border-b-4 border-sky-800 hover:border-sky-700 disabled:border-slate-800"
             >
                 Купить
             </button>
             <button
                 onClick={onEndTurn}
                 disabled={gamePhase !== GamePhase.ACTION || !isMyTurn}
-                className="w-full font-bebas text-xl tracking-wider bg-red-600 hover:bg-red-500 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed text-white py-2 rounded-md transition-all transform hover:enabled:scale-105 border-b-4 border-red-800 hover:border-red-700 disabled:border-slate-800"
+                className="w-full font-bebas text-xl tracking-wider bg-slate-600 hover:bg-slate-500 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed text-white py-2 rounded-md transition-all transform hover:enabled:scale-105 border-b-4 border-slate-800 hover:border-slate-700 disabled:border-slate-800"
             >
                 Завершить ход
             </button>
         </div>
       </div>
 
-      <div className="h-24 bg-slate-900/70 rounded-md p-2 text-left text-sm font-light text-slate-300 overflow-y-auto border border-slate-700 shadow-inner">
+      <div className="h-24 bg-black/60 rounded-md p-2 text-left text-sm font-mono text-slate-300 overflow-y-auto border-2 border-slate-600 shadow-inner"
+        style={{
+            backgroundImage: 'linear-gradient(rgba(100, 255, 100, 0.05) 50%, transparent 50%)',
+            backgroundSize: '100% 4px'
+        }}
+      >
         {gameLog.map((log, index) => (
-            <p key={index} className="leading-tight">{log}</p>
+            <p key={index} className="leading-tight">{'> '}{log}</p>
         ))}
       </div>
     </div>

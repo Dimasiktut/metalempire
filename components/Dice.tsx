@@ -33,7 +33,7 @@ const Dice: React.FC<DiceProps> = ({ value, rolling }) => {
   };
 
   const getDotClass = (pos: string) => {
-    const base = 'absolute w-2.5 h-2.5 md:w-3 md:h-3 bg-slate-800 rounded-full shadow-inner';
+    const base = 'absolute w-2.5 h-2.5 md:w-3 md:h-3 bg-zinc-900 rounded-full shadow-inner';
     const transform = 'transform -translate-x-1/2 -translate-y-1/2';
     switch (pos) {
       case 'top-left': return `${base} top-1/4 left-1/4 ${transform}`;
@@ -48,10 +48,10 @@ const Dice: React.FC<DiceProps> = ({ value, rolling }) => {
   };
 
   return (
-    <div className={`relative w-14 h-14 md:w-16 md:h-16 bg-slate-200 rounded-lg shadow-lg transition-transform duration-500 ${rolling ? 'animate-spin' : ''}`}
+    <div className={`relative w-14 h-14 md:w-16 md:h-16 rounded-lg shadow-lg transition-transform duration-500 ${rolling ? 'animate-spin' : ''}`}
       style={{
-        background: 'linear-gradient(145deg, #e6e6e6, #c2c2c2)',
-        boxShadow: '5px 5px 10px #a1a1a1, -5px -5px 10px #ffffff'
+        background: 'linear-gradient(145deg, #71717a, #3f3f46)',
+        boxShadow: '4px 4px 8px #1f2937, -4px -4px 8px #52525b'
       }}
     >
       <div className="w-full h-full p-2 relative">

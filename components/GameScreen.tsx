@@ -52,13 +52,13 @@ const GameScreen: React.FC<GameScreenProps> = ({ multiPlayerState }) => {
             <div className="flex justify-center space-x-4">
               <button
                 onClick={() => handleAction('CONFIRM_ACTION', { confirmed: false })}
-                className="w-32 font-bebas text-xl tracking-wider bg-red-600 hover:bg-red-500 text-white py-2 rounded-md transition-all transform hover:scale-105 border-b-4 border-red-800 hover:border-red-700"
+                className="w-32 font-bebas text-xl tracking-wider bg-red-700 hover:bg-red-600 text-white py-2 rounded-md transition-all transform hover:scale-105 border-b-4 border-red-900 hover:border-red-800"
               >
                 Отмена
               </button>
               <button
                 onClick={() => handleAction('CONFIRM_ACTION', { confirmed: true })}
-                className="w-32 font-bebas text-xl tracking-wider bg-green-600 hover:bg-green-500 text-white py-2 rounded-md transition-all transform hover:scale-105 border-b-4 border-green-800 hover:border-green-700"
+                className="w-32 font-bebas text-xl tracking-wider bg-green-700 hover:bg-green-600 text-white py-2 rounded-md transition-all transform hover:scale-105 border-b-4 border-green-900 hover:border-green-800"
               >
                 Подтвердить
               </button>

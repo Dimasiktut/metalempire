@@ -8,7 +8,7 @@ const GoIcon = () => <path strokeLinecap="round" strokeLinejoin="round" strokeWi
 const JailIcon = () => <g><path d="M4 6v12h16V6H4zm2 2h12v8H6V8z"/><path d="M10 8v8m4-8v8M6 12h12"/></g>;
 const ParkingIcon = () => <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 3.5v17M9 3.5h5.5a5.5 5.5 0 010 11H9" />;
 const GoToJailIcon = () => <path strokeLinecap="round" strokeLinejoin="round"strokeWidth="2" d="M16 8v.01M12 12v.01M12 16v.01M12 8v.01M16 12v.01M20 12v.01M8 12v.01M4 12v.01M12 4v.01M16 16v.01M8 16v.01M8 8v.01M20 16v.01M20 8v.01M4 16v.01M4 8v.01" />;
-const ChanceIcon = () => <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="60" fill="#facc15" className="font-bebas">?</text>;
+const ChanceIcon = () => <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="60" fill="#f59e0b" className="font-bebas">?</text>;
 const ChestIcon = () => <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4-8-4m16 0v10l-8 4-8-4V7" />;
 const RailroadIcon = () => <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />;
 const UtilityIcon = () => <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />;
@@ -78,7 +78,7 @@ const getOwner = (square: BoardSquare, players: Player[]): Player | undefined =>
 }
 
 const SquareContent: React.FC<{ square: BoardSquare, owner?: Player }> = ({ square, owner }) => {
-  const cardClasses = "w-full h-full flex flex-col items-center bg-slate-800/80 rounded-[1px] overflow-hidden p-1";
+  const cardClasses = "w-full h-full flex flex-col items-center bg-slate-800/90 rounded-[1px] overflow-hidden p-1";
   
   const NamePlate: React.FC<{name: string}> = ({name}) => (
     <div className="h-12 w-full flex items-center justify-center text-center px-1">
@@ -125,8 +125,8 @@ const SquareContent: React.FC<{ square: BoardSquare, owner?: Player }> = ({ squa
       return <div className={`relative w-full h-full flex justify-center items-center bg-slate-800`}>
         <div className="transform -rotate-45 flex flex-col items-center">
             <div className="font-roboto-condensed text-xs whitespace-nowrap">Получите $200</div>
-            <div className="font-bebas text-3xl text-red-500 my-1">СТАРТ</div>
-            <svg className="w-10 h-10 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><GoIcon/></svg>
+            <div className="font-bebas text-3xl text-amber-500 my-1">СТАРТ</div>
+            <svg className="w-10 h-10 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><GoIcon/></svg>
         </div>
       </div>
     case SquareType.JAIL:
@@ -137,32 +137,32 @@ const SquareContent: React.FC<{ square: BoardSquare, owner?: Player }> = ({ squa
           <div className="w-full h-1/2 absolute bottom-0 right-0 flex items-center justify-center">
              <span className="font-bebas text-sm transform -rotate-45">ПОСЕЩЕНИЕ</span>
           </div>
-          <div className="w-3/4 h-3/4 border-4 border-orange-500/50 flex items-center justify-center">
-            <svg className="w-16 h-16 text-orange-500 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><JailIcon/></svg>
+          <div className="w-3/4 h-3/4 border-4 border-orange-600/50 flex items-center justify-center">
+            <svg className="w-16 h-16 text-orange-600 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><JailIcon/></svg>
           </div>
       </div>
     case SquareType.FREE_PARKING:
        return <div className={`relative w-full h-full justify-center items-center flex flex-col bg-slate-800/80`}>
          <div className="transform -rotate-45 flex flex-col items-center">
-            <div className="font-bebas text-xl text-green-400">БЕСПЛАТНАЯ</div>
-            <svg className="w-12 h-12 text-green-500 my-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><ParkingIcon/></svg>
-            <div className="font-bebas text-xl text-green-400">ПАРКОВКА</div>
+            <div className="font-bebas text-xl text-slate-400">БЕСПЛАТНАЯ</div>
+            <svg className="w-12 h-12 text-slate-400 my-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><ParkingIcon/></svg>
+            <div className="font-bebas text-xl text-slate-400">ПАРКОВКА</div>
          </div>
       </div>;
     case SquareType.GO_TO_JAIL:
         return <div className={`relative w-full h-full justify-center items-center flex flex-col bg-slate-800/80`}>
              <div className="transform -rotate-45 flex flex-col items-center">
-                <div className="font-bebas text-xl text-blue-400">ОТПРАВЛЯЙТЕСЬ</div>
-                <svg className="w-12 h-12 text-blue-500 my-1 opacity-80" fill="currentColor" viewBox="0 0 24 24"><GoToJailIcon/></svg>
-                <div className="font-bebas text-xl text-blue-400">В ТЮРЬМУ</div>
+                <div className="font-bebas text-xl text-cyan-400">ОТПРАВЛЯЙТЕСЬ</div>
+                <svg className="w-12 h-12 text-cyan-500 my-1 opacity-80" fill="currentColor" viewBox="0 0 24 24"><GoToJailIcon/></svg>
+                <div className="font-bebas text-xl text-cyan-400">В ТЮРЬМУ</div>
             </div>
       </div>;
     case SquareType.CHANCE:
         return <div className={cardClasses}><NamePlate name={square.name}/><div className="flex-grow flex items-center justify-center"><svg viewBox="0 0 100 100" className="w-12 h-12"><ChanceIcon/></svg></div><PricePlate/></div>;
     case SquareType.COMMUNITY_CHEST:
-        return <div className={cardClasses}><NamePlate name={square.name}/><div className="flex-grow flex items-center justify-center text-blue-400"><svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><ChestIcon/></svg></div><PricePlate/></div>;
+        return <div className={cardClasses}><NamePlate name={square.name}/><div className="flex-grow flex items-center justify-center text-cyan-400"><svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><ChestIcon/></svg></div><PricePlate/></div>;
     case SquareType.TAX:
-        return <div className={cardClasses}><NamePlate name={square.name}/><div className="flex-grow flex items-center justify-center text-red-400"><svg className="w-10 h-10" fill="currentColor" viewBox="0 0 25 25"><TaxIcon/></svg></div><PricePlate price={square.amount}/></div>;
+        return <div className={cardClasses}><NamePlate name={square.name}/><div className="flex-grow flex items-center justify-center text-red-500"><svg className="w-10 h-10" fill="currentColor" viewBox="0 0 25 25"><TaxIcon/></svg></div><PricePlate price={square.amount}/></div>;
     default:
       return <div className={`w-full h-full flex justify-center items-center bg-slate-700/50 font-semibold`}>{(square as BoardSquare).name}</div>;
   }
@@ -193,7 +193,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ board, players }) => {
   return (
     <>
       <div
-        className="grid w-full h-full bg-slate-900/70 border-4 border-slate-700 shadow-2xl rounded-md p-1.5"
+        className="grid w-full h-full bg-slate-900 border-4 border-slate-700 shadow-2xl rounded-md p-1.5"
         style={{
           gridTemplateRows: '1.7fr repeat(9, 1.1fr) 1.7fr',
           gridTemplateColumns: '1.7fr repeat(9, 1.1fr) 1.7fr',
@@ -203,7 +203,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ board, players }) => {
         {board.map((square, index) => (
           <div
             key={square.id}
-            className="relative bg-slate-900 text-white overflow-hidden"
+            className="relative bg-gray-900 text-white overflow-hidden"
             style={getGridPosition(index)}
             onMouseEnter={(e) => handleMouseEnter(square, e)}
             onMouseLeave={handleMouseLeave}

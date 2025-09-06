@@ -76,7 +76,7 @@ const useGameEngine = (initialPlayers: Player[], initialGameState: GameState | n
         }
         playerToUpdate.position = newPosition;
 
-        const square = board[newPosition];
+        const square = board[newPosition] as BoardSquare;
         log(`${player.name} приземляется на "${square.name}".`);
 
         switch (square.type) {
@@ -86,12 +86,21 @@ const useGameEngine = (initialPlayers: Player[], initialGameState: GameState | n
                 if (!square.ownerId) {
                     return { ...prev, players: newPlayers, gamePhase: GamePhase.ACTION, gameLog: newLog };
                 } else if (square.ownerId !== player.id) {
-                    const owner = players.find(p => p.id === square.ownerId);
+                    const owner = newPlayers.find(p => p.id === square.ownerId);
                     if (owner) {
                         let rent = 0;
-                        if (square.type === SquareType.PROPERTY) rent = square.rent[0]; // Simplified
-                        if (square.type === SquareType.RAILROAD) rent = square.rent[0]; // Simplified
-                        if (square.type === SquareType.UTILITY) rent = (dice[0] + dice[1]) * 4; // Simplified
+                        if (square.type === SquareType.PROPERTY) {
+                           rent = square.rent[square.houses];
+                        }
+                        if (square.type === SquareType.RAILROAD) {
+                            const ownedRailroads = board.filter(s => s.type === SquareType.RAILROAD && s.ownerId === owner.id).length;
+                            rent = square.rent[ownedRailroads - 1];
+                        }
+                        if (square.type === SquareType.UTILITY) {
+                            const ownedUtilities = board.filter(s => s.type === SquareType.UTILITY && s.ownerId === owner.id).length;
+                            const multiplier = ownedUtilities === 1 ? 4 : 10;
+                            rent = (dice[0] + dice[1]) * multiplier;
+                        }
                         
                         const ownerToUpdate = newPlayers.find(p => p.id === owner.id)!;
                         playerToUpdate.money -= rent;
